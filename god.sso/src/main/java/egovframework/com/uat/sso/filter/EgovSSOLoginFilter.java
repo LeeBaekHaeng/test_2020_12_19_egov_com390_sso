@@ -106,41 +106,41 @@ public class EgovSSOLoginFilter implements Filter {
 
 		chain.doFilter(request, response);
 
-		isLocallyAuthenticated = (String) session.getAttribute("isLocallyAuthenticated");
-		isRemotelyAuthenticated = (String) session.getAttribute("isRemotelyAuthenticated");
-
-		if (isLocallyAuthenticated != null && isLocallyAuthenticated.equals("true")) {
-			if (isRemotelyAuthenticated == null) {
-
-			}
-		} else if (isLocallyAuthenticated == null) {
-			if (isRemotelyAuthenticated == null) {
-
-			} else if (isRemotelyAuthenticated != null && isRemotelyAuthenticated.equals("true")) {
-
-				try {
-					//세션 토큰 정보를 가지고 DB로부터 사용자 정보를 가져옴
-					LoginVO loginVO = (LoginVO) session.getAttribute("loginVOForDBAuthentication");
-					loginVO = loginService.actionLoginByEsntlId(loginVO);
-					if (loginVO != null && loginVO.getId() != null && !loginVO.getId().equals("")) {
-						//세션 로그인
-						session.setAttribute("loginVO", loginVO);
-
-						//로컬 인증결과 세션에 저장
-						session.setAttribute("isLocallyAuthenticated", "true");
-					} else {
-						LOGGER.debug("Local authentication by sso is failed");
-					}
-
-				} catch (IllegalStateException ex) {//KISA 보안약점 조치 (2018-10-29, 윤창원)
-					LOGGER.debug("Local authentication by sso is failed (Invalidated session) : {}", ex.getMessage());
-				} catch (Exception ex) {
-					//DB인증 예외가 발생할 경우 로그를 남기고 로컬인증을 시키지 않고 그대로 진행함.
-					LOGGER.debug("Local authentication by sso is failed : {}", ex.getMessage());
-				}
-
-			}
-		}
+//		isLocallyAuthenticated = (String) session.getAttribute("isLocallyAuthenticated");
+//		isRemotelyAuthenticated = (String) session.getAttribute("isRemotelyAuthenticated");
+//
+//		if (isLocallyAuthenticated != null && isLocallyAuthenticated.equals("true")) {
+//			if (isRemotelyAuthenticated == null) {
+//
+//			}
+//		} else if (isLocallyAuthenticated == null) {
+//			if (isRemotelyAuthenticated == null) {
+//
+//			} else if (isRemotelyAuthenticated != null && isRemotelyAuthenticated.equals("true")) {
+//
+//				try {
+//					//세션 토큰 정보를 가지고 DB로부터 사용자 정보를 가져옴
+//					LoginVO loginVO = (LoginVO) session.getAttribute("loginVOForDBAuthentication");
+//					loginVO = loginService.actionLoginByEsntlId(loginVO);
+//					if (loginVO != null && loginVO.getId() != null && !loginVO.getId().equals("")) {
+//						//세션 로그인
+//						session.setAttribute("loginVO", loginVO);
+//
+//						//로컬 인증결과 세션에 저장
+//						session.setAttribute("isLocallyAuthenticated", "true");
+//					} else {
+//						LOGGER.debug("Local authentication by sso is failed");
+//					}
+//
+//				} catch (IllegalStateException ex) {//KISA 보안약점 조치 (2018-10-29, 윤창원)
+//					LOGGER.debug("Local authentication by sso is failed (Invalidated session) : {}", ex.getMessage());
+//				} catch (Exception ex) {
+//					//DB인증 예외가 발생할 경우 로그를 남기고 로컬인증을 시키지 않고 그대로 진행함.
+//					LOGGER.debug("Local authentication by sso is failed : {}", ex.getMessage());
+//				}
+//
+//			}
+//		}
 
 	}
 

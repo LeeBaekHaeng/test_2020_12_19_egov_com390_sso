@@ -112,7 +112,9 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 							springSecurity = (UsernamePasswordAuthenticationFilter) beans.values().toArray()[0];
 							springSecurity.setUsernameParameter("egov_security_username");
 							springSecurity.setPasswordParameter("egov_security_password");
-							springSecurity.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(request.getServletContext().getContextPath() +"/egov_security_login", "POST"));
+//							springSecurity.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(request.getServletContext().getContextPath() +"/egov_security_login", "POST"));
+							springSecurity.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(request.getServletContext().getContextPath() +"/egov_security_login", "GET"));
+							springSecurity.setPostOnly(false);
 						} else {
 							LOGGER.error("No AuthenticationProcessingFilter");
 							throw new IllegalStateException("No AuthenticationProcessingFilter");

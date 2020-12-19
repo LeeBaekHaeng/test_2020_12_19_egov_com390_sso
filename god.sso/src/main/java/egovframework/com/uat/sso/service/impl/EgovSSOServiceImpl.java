@@ -16,32 +16,37 @@ public class EgovSSOServiceImpl extends EgovAbstractServiceImpl implements EgovS
 
 	@Override
 	public boolean hasTokenInSSOServer(ServletRequest request, ServletResponse response) {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO SSO
+		return true;
 	}
 
 	@Override
 	public void requestIssueToken(ServletRequest request, ServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void ssoLoginByServer(ServletRequest request, ServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public LoginVO getLoginVO(ServletRequest request, ServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO SSO
+		LoginVO loginVO = new LoginVO();
+//		loginVO.setUniqId("USRCNFRM_00000000000"); // TEST1
+		loginVO.setUniqId("USRCNFRM_99999999999"); // webmaster
+		loginVO.setUserSe("USR"); // 업무
+
+		return loginVO;
 	}
 
 	@Override
 	public void ssoLogout(ServletRequest request, ServletResponse response, String returnURL) throws IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
