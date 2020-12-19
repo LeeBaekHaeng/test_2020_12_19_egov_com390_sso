@@ -19,6 +19,7 @@ import egovframework.com.cmm.filter.HTMLTagFilter;
 import egovframework.com.cmm.service.EgovProperties;
 import egovframework.com.sec.security.filter.EgovSpringSecurityLoginFilter;
 import egovframework.com.sec.security.filter.EgovSpringSecurityLogoutFilter;
+import egovframework.com.uat.sso.filter.EgovSSOLoginFilter;
 import egovframework.com.uat.uap.filter.EgovLoginPolicyFilter;
 import egovframework.com.utl.wed.filter.CkFilter;
 
@@ -92,6 +93,9 @@ public class EgovWebApplicationInitializer implements WebApplicationInitializer 
 		dispatcher.setLoadOnStartup(1);
 		
 		if("security".equals(EgovProperties.getProperty("Globals.Auth").trim())) {
+			
+			FilterRegistration.Dynamic egovSSOLoginFilter = servletContext.addFilter("egovSSOLoginFilter", new EgovSSOLoginFilter());
+			egovSSOLoginFilter.addMappingForUrlPatterns(null, false, "*.do");
 			
 			//-------------------------------------------------------------
 			// springSecurityFilterChain 설정
