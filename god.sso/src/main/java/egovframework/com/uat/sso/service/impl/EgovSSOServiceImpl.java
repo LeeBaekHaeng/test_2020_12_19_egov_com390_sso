@@ -16,8 +16,8 @@ public class EgovSSOServiceImpl extends EgovAbstractServiceImpl implements EgovS
 
 	@Override
 	public boolean hasTokenInSSOServer(ServletRequest request, ServletResponse response) {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO SSO
+		return true;
 	}
 
 	@Override
