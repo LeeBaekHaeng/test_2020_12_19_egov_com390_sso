@@ -34,8 +34,12 @@ public class EgovSSOServiceImpl extends EgovAbstractServiceImpl implements EgovS
 
 	@Override
 	public LoginVO getLoginVO(ServletRequest request, ServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO SSO
+		LoginVO loginVO = new LoginVO();
+		loginVO.setUniqId("USRCNFRM_00000000000");
+		loginVO.setUserSe("USR");
+
+		return loginVO;
 	}
 
 	@Override
