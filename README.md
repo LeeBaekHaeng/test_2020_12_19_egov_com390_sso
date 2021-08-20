@@ -39,3 +39,4 @@ SSO 연계 서비스 테스트
 2.7 EgovSSOLoginFilter chain.doFilter(request, response); 후 코드 주석
 2.8 springSecurity.setPostOnly(false);
 2.9 끝
+
